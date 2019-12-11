@@ -214,7 +214,24 @@ string processFunction(const StringView seq, Lexer & lex) {
             result = func + "(" + rdate + ", " + ramount + ")";
         }
         return result;
+     } else if (fn.type == Token::LCASE) {
+        if (!lex.Match(Token::LPARENT))
+            return seq.to_string();
 
+        auto param = processIdentOrFunction(seq, lex /*, false*/);
+        if (param.empty())
+            return seq.to_string();
+        lex.Consume();
+        return "lowerUTF8(toString(" + param + "))";
+     } else if (fn.type == Token::UCASE) {
+        if (!lex.Match(Token::LPARENT))
+            return seq.to_string();
+
+        auto param = processIdentOrFunction(seq, lex /*, false*/);
+        if (param.empty())
+            return seq.to_string();
+        lex.Consume();
+        return "upperUTF8(toString(" + param + "))";
     } else if (fn.type == Token::LOCATE) {
         string result;
         if (!lex.Match(Token::LPARENT))
@@ -233,7 +250,7 @@ string processFunction(const StringView seq, Lexer & lex) {
         auto offset = processIdentOrFunction(seq, lex /*, false */);
         lex.Consume();
 
-        result = "position(" + haystack + "," + needle + ")";
+        result = "position(toString(" + haystack + ")," + needle + ")";
 
         return result;
 

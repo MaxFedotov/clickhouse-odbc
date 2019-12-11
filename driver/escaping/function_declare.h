@@ -39,7 +39,6 @@
     DECLARE2(CONCAT, "concat"),
     // DIFFERENCE
     // INSERT
-    DECLARE2(LCASE, "lowerUTF8"),
     DECLARE2(LOWER, "lowerUTF8"),
     // LEFT  substring(s, 0, length)
     DECLARE2(LENGTH, "lengthUTF8"),
@@ -54,7 +53,6 @@
     // SOUNDEX
     // SPACE
     DECLARE2(SUBSTRING, "substringUTF8"),
-    DECLARE2(UCASE, "upperUTF8"),
     DECLARE2(UPPER, "upperUTF8"),
 
 
